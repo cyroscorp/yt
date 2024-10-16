@@ -1,0 +1,42 @@
+@import '@fontsource/inter/variable';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply overflow-hidden bg-gray-200 dark:bg-gray-800 dark:text-white;
+}
+
+@layer utilities {
+  .is-active {
+    @apply border-gray-400 dark:border-gray-600;
+  }
+
+  .scroll-container {
+    scrollbar-gutter: stable;
+    @apply overflow-auto;
+  }
+
+  /* width */
+  .scroll-container::-webkit-scrollbar {
+    @apply w-3 bg-transparent;
+  }
+
+  /* Track */
+  .scroll-container::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* Handle */
+  .scroll-container::-webkit-scrollbar-thumb {
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 9999px;
+    @apply bg-gray-300;
+  }
+
+  .dark .scroll-container::-webkit-scrollbar-thumb {
+    @apply bg-gray-700;
+  }
+}
