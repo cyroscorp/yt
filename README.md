@@ -1,71 +1,113 @@
-<p align="center">
-  <h1 align="center">PomoDo</h1>
+Project Live preivew link ►<a href="https://healthcare-service-react-app.web.app/" target="_blank">Health Haven website</a>
+This project is based on a Healthcare service in this project and the technology is used here is react js.
 
-  <p align="center">
-    Pomodoro Timer for Solopreneurs & Indiehackers
-  </p>
+In this site we have these features and services
+1. Responsive Navbar
+2. user Navigation 
+3. Authentication system for login and register
+4. carousel for advertisement 
+5. Services list and images with details
+6. Doctors list
+7. Appointment page
+8. Responsive Footer
 
-<p align="center">
-  <img width="937" alt="PomoDo" src="./screenshot.png">
-  </p>
-</p>
+The Package uses in this project:
+1. Material Ui
+2. React Router
+3. Firebase Authentication and hosting
+4. Emotion core
+5. React Hash link
+6. Material UI carousel
+7. @mui/lab
+8. date-fns
+9. React swal alert
+10. React Google Button
 
-<br/>
 
-## About PomoDo
+Service demo images►
+Home page
+<img src="./src/demo_imgs/Home_page.png" alt="Home page" />
+services page
+<img src="./src/demo_imgs/service_page.png" alt="services page" />
+doctors page
+<img src="./src/demo_imgs/doctors_page.png" alt="doctors page" />
+appointment page
+<img src="./src/demo_imgs/appointment_page.png" alt="appointment page" />
+about page
+<img src="./src/demo_imgs/about_page.png" alt="about page" />
+user profile
+<img src="./src/demo_imgs/user_profile.png" alt="user profile" />
+mobile view
+<img src="./src/demo_imgs/home_mobile_view.png" alt="mobile view" />
 
-I've been following the Marketing Week / Coding Week philosophy for the past six months and have seen great user growth in my app [WorkSheet](https://worksheet.digital/) as a result of this split of my time. Combined with the popular Pomodoro method, I have found the perfect productivity method for me. Now I want to help others make these methods easily accessible.
+-----------------Additional info-----------------
+# Getting Started with Create React App
 
-For this I have combined the two approaches in the webapp PomoDo.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Features
+## Available Scripts
 
-- Pomodoro Timer
-- Codingweek / Marketingweek Reminder
-- Todolist
+In the project directory, you can run:
 
-### Built With
+### `npm start`
 
-- [Typescript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/)
-- [React](https://reactjs.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Dexie.js](https://dexie.org/)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Getting started
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-To get the project running locally on your machine you need to have the following development tools installed:
+### `npm test`
 
-- Node.JS (we recommend v16)
-- Yarn
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-1. Clone the project:
+### `npm run build`
 
-```
-git clone git@github.com:maltesa/PomoDo.git && cd PomoDo
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-2. Install Node.JS packages via yarn. Don't have yarn? Use `npm install --global yarn`.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-```
-yarn install
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-3. Start the development server:
+### `npm run eject`
 
-```
-yarn dev
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-**You can now access the app on [https://localhost:5173](https://localhost:5173)**.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Contributing
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Make your changes
-4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-5. Push to the branch (`git push origin feature/AmazingFeature`)
-6. Open a pull request
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
