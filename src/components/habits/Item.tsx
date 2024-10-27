@@ -104,52 +104,62 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
     };
 
     return (
-        <div>
-            <div
-                className={`bg-b-secondary dark:bg-db-secondary flex flex-row relative justify-between w-full drop-shadow px-2 py-1 rounded-md`}
-            >
-                <div className="flex flex-row items-center space-x-6">
-                    <div className="flex flex-row items-center py-1">
-                        <button
-                            id="button"
-                            className={
-                                "rounded-full h-4 w-4 mr-2" +
-                                (habit.history[today].progress >= habit.history[today].goalNumber
-                                    ? " bg-t-primary dark:bg-dt-primary "
-                                    : " border-2 border-t-primary dark:border-dt-primary")
-                            }
-                            onClick={() =>
-                                handleSetProgress(
-                                    habit.history[today].progress >= habit.history[today].goalNumber
-                                        ? 0
-                                        : Number(habit.history[today].goalNumber)
-                                )
-                            }
-                        />
-                        <p className="ml-2 mr-4 text-t-primary dark:text-dt-primary">{habit.title}</p>
-                    </div>
+        <div className="mb-4">
+            <div className="bg-white dark:bg-gray-800 flex justify-between items-center p-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                <div className="flex items-center space-x-4">
+                    <button
+                        className={`rounded-full h-5 w-5 transition duration-300 ${
+                            habit.history[today].progress >= habit.history[today].goalNumber
+                                ? "bg-green-500"
+                                : "border-2 border-blue-500"
+                        }`}
+                        onClick={() =>
+                            handleSetProgress(
+                                habit.history[today].progress >= habit.history[today].goalNumber
+                                    ? 0
+                                    : Number(habit.history[today].goalNumber)
+                            )
+                        }
+                    />
+                    <p className="text-gray-800 dark:text-white font-medium">{habit.title}</p>
+                </div>
 
-                    <div className="flex flex-row space-x-3">
-                        <button onClick={() => handleSetProgress(habit.history[today].progress - 1)}>-</button>
-                        <p>
-                            {habit.history[today].progress}/{habit.history[today].goalNumber}{" "}
-                            {habit.history[today].goalUnit}
-                        </p>
-                        <button onClick={() => handleSetProgress(habit.history[today].progress + 1)}>+</button>
-                    </div>
+                <div className="flex items-center space-x-2">
+                    <button
+                        onClick={() => handleSetProgress(habit.history[today].progress - 1)}
+                        className="bg-blue-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-blue-600"
+                    >
+                        -
+                    </button>
+                    <p className="text-gray-700 dark:text-gray-300">
+                        {habit.history[today].progress}/{habit.history[today].goalNumber}{" "}
+                        {habit.history[today].goalUnit}
+                    </p>
+                    <button
+                        onClick={() => handleSetProgress(habit.history[today].progress + 1)}
+                        className="bg-blue-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-blue-600"
+                    >
+                        +
+                    </button>
                 </div>
 
                 <Popover placement="right-start">
                     <PopoverTrigger>
-                        <IconDots className="h-6 w-6 text-t-primary dark:text-dt-primary ml-10" />
+                        <IconDots className="h-6 w-6 text-gray-600 dark:text-gray-300 cursor-pointer" />
                     </PopoverTrigger>
                     <PopoverContent className="Popover">
-                        <div className="p-2 flex flex-col items-start bg-b-secondary drop-shadow dark:bg-db-secondary rounded-md">
-                            <button onClick={() => setEditOpen(true)}>
-                                <p className="text-t-primary dark:text-dt-primary">Edit</p>
+                        <div className="p-2 flex flex-col items-start bg-white dark:bg-gray-800 rounded-md shadow-md">
+                            <button
+                                onClick={() => setEditOpen(true)}
+                                className="text-gray-800 dark:text-white hover:text-blue-500 transition duration-200"
+                            >
+                                Edit
                             </button>
-                            <button onClick={() => setRemoveOpen(true)}>
-                                <p className="text-t-primary dark:text-dt-primary">Remove</p>
+                            <button
+                                onClick={() => setRemoveOpen(true)}
+                                className="text-gray-800 dark:text-white hover:text-red-500 transition duration-200"
+                            >
+                                Remove
                             </button>
                         </div>
                     </PopoverContent>
@@ -157,75 +167,74 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
             </div>
 
             <Modal open={editOpen} setOpen={setEditOpen} title={"Edit Habit"}>
-                <form onSubmit={handleSubmit(handleEditHabit)} className="space-y-2">
-                    <div className="space-y-1">
+                <form onSubmit={handleSubmit(handleEditHabit)} className="space-y-4">
+                    <div>
                         <input
                             type="text"
                             placeholder="Habit Title"
                             {...register("title", { required: "Habit Title is required", minLength: 2 })}
-                            className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-full"
+                            className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                         />
-                        {errors.title && <p className="text-red-1 text-xs">{errors.title.message as string}</p>}
+                        {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
                     </div>
 
-                    <div className="flex flex-row items-center space-x-2">
-                        <div className="space-y-1">
+                    <div className="flex space-x-4">
+                        <div className="flex-1">
                             <input
                                 type="number"
-                                placeholder="45"
-                                {...register("goalNumber", { required: "Goal Number is required", minLength: 1 })}
-                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-[5ch]"
+                                placeholder="Goal Number"
+                                {...register("goalNumber", { required: "Goal Number is required", min: 1 })}
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
-                            {errors.goalNumber && (
-                                <p className="text-red-1 text-xs">{errors.goalNumber.message as string}</p>
-                            )}
+                            {errors.goalNumber && <p className="text-red-500 text-sm">{errors.goalNumber.message}</p>}
                         </div>
 
-                        <div className="space-y-1">
+                        <div className="flex-1">
                             <input
                                 type="text"
-                                placeholder="Minutes"
+                                placeholder="Goal Unit"
                                 {...register("goalUnit", { required: "Goal Units are required", minLength: 1 })}
-                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary "
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
-                            {errors.goalUnit && (
-                                <p className="text-red-1 text-xs">{errors.goalUnit.message as string}</p>
-                            )}
+                            {errors.goalUnit && <p className="text-red-500 text-sm">{errors.goalUnit.message}</p>}
                         </div>
                     </div>
 
-                    <div className="flex flex-row justify-end pt-4">
-                        <button onClick={() => setEditOpen(false)} type="button">
-                            <p>Cancel</p>
+                    <div className="flex justify-end space-x-4 pt-4">
+                        <button
+                            onClick={() => setEditOpen(false)}
+                            type="button"
+                            className="text-gray-600 hover:text-gray-800 transition duration-200"
+                        >
+                            Cancel
                         </button>
-                        <button className="ml-4 bg-purple-1 text-white drop-shadow-md py-2 px-4 rounded-md">
-                            <p>Edit</p>
+                        <button className="bg-blue-600 text-white rounded-lg py-2 px-4 transition duration-300 hover:bg-blue-700">
+                            Edit
                         </button>
                     </div>
                 </form>
             </Modal>
 
             <Modal open={removeOpen} setOpen={setRemoveOpen} title={"Remove Habit"}>
-                <div className="max-w-[500px]">
-                    <p>
-                        Are you sure you want to delete your habit? If so, select delete. If you only want to retire
-                        your habit, select retire. You will still be able to view retired habit data.
+                <div className="max-w-md">
+                    <p className="text-gray-800 dark:text-gray-300 mb-4">
+                        Are you sure you want to delete this habit? Select delete to remove it permanently, or retire it to keep the data.
                     </p>
-                    <div className="flex flex-row justify-end pt-4">
-                        <button onClick={() => setRemoveOpen(false)} type="button">
-                            <p>Cancel</p>
+                    <div className="flex justify-end space-x-4">
+                        <button onClick={() => setRemoveOpen(false)} type="button" className="text-gray-600 hover:text-gray-800 transition duration-200">
+                            Cancel
                         </button>
                         <button
                             onClick={handleRetireHabit}
-                            className="ml-4 bg-b-primary dark:bg-db-tertiary text-t-primary dark:text-dt-primary drop-shadow-md py-2 px-4 rounded-md"
+                            className="bg-yellow-500 text-white rounded-lg py-2 px-4 transition duration-300 hover:bg-yellow-600"
                         >
-                            <p>Retire</p>
+                            Retire
                         </button>
                         <button
                             onClick={handleDeleteHabit}
-                            className="ml-4 bg-red-1 text-white drop-shadow-md py-2 px-4 rounded-md"
+                            className="bg-red-500 text-white rounded-lg py-2 px-4 transition duration-300 hover:bg-red-600"
                         >
-                            <p>Delete</p>
+                            Delete
                         </button>
                     </div>
                 </div>

@@ -72,7 +72,7 @@ const UrlStorageBox: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+       
             <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-4 flex flex-col transition-all"
                  style={{ maxHeight: urls.length > 0 ? "70vh" : "200px", overflowY: "auto" }}>
                 <h3 className="text-xl font-semibold mb-4">URL Storage Box</h3>
@@ -116,7 +116,7 @@ const UrlStorageBox: React.FC = () => {
                     </>
                 </main>
             </div>
-        </div>
+     
     );
 };
 

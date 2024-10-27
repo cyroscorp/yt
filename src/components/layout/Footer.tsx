@@ -12,10 +12,10 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-start md:justify-between py-2">
                 <div className="flex flex-row items-center space-x-1">
                     <IconCopyright size={16} />
-                    <p>Marshall Blatz {renderCurrentYear()}</p>
+                    <p>Arjun Kumar Dubey {renderCurrentYear()}</p>
                 </div>
-                <a href="https://blatz.io" target="_blank">
-                    <p>blatz.io</p>
+                <a href="https://proboost.vercel.app" target="_blank">
+                    <p>ProBoost</p>
                 </a>
             </div>
         </div>

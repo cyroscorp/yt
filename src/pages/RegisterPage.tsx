@@ -29,7 +29,7 @@ export default function RegisterPage() {
         <div className="flex justify-center items-center w-full h-screen">
             <div className="flex flex-col bg-b-secondary dark:bg-db-secondary p-8 rounded-lg drop-shadow-md space-y-4">
                 <button onClick={() => navigate("/")}>
-                    <h1 className="text-purple-1 m-auto">Amplo</h1>
+                    <h1 className="text-green-1 m-auto">ProBoost</h1>
                 </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
@@ -65,7 +65,7 @@ export default function RegisterPage() {
                     <input
                         type="submit"
                         value="Register"
-                        className="bg-purple-1 text-white drop-shadow-md py-2 rounded-md w-full"
+                        className="bg-green-1 text-white drop-shadow-md py-2 rounded-md w-full"
                     />
                 </form>
 
@@ -87,7 +87,7 @@ export default function RegisterPage() {
                 <div className="flex flex-row space-x-2">
                     <p> Already have an account?</p>
                     <p>
-                        <Link to="/login" className="text-purple-1">
+                        <Link to="/login" className="text-green-1">
                             Login here
                         </Link>
                     </p>

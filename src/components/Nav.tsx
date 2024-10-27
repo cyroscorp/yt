@@ -111,7 +111,7 @@ export default function Nav() {
     return (
         <div>
             <div className="flex justify-between items-center py-4 space-x-1">
-                <h3 className="text-purple-1">Amplo</h3>
+                <h3 className="text-green-1">ProBoost.</h3>
 
                 <div>
                     {user ? (
@@ -142,9 +142,9 @@ export default function Nav() {
                     ) : (
                         <button
                             onClick={() => navigate("/login")}
-                            className="flex border-2 border-purple-1 px-2 py-1 rounded-lg"
+                            className="flex border-2 border-green-1 px-2 py-1 rounded-lg"
                         >
-                            <p className="text-purple-1">Login</p>
+                            <p className="text-green-1">Login</p>
                         </button>
                     )}
                 </div>

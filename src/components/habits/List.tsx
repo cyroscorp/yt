@@ -12,8 +12,6 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
     const [open, setOpen] = useState(false);
     const [user] = useAuthState(auth);
 
-    console.log(habits);
-
     const today = getCurrentDate();
     const {
         register,
@@ -25,7 +23,6 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
     const handleAddHabit = async (data: HabitForm) => {
         if (user) {
             const newHabit = await createHabit(user.uid, data);
-            console.log(newHabit);
             if (newHabit) {
                 setHabits((prev: Habit[]) => [...prev, newHabit]);
             } else {
@@ -53,69 +50,72 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
             }
         });
     }
+
     return (
-        <div>
-            <div className="flex flex-col space-y-2">
-                <h3>Habits</h3>
-                <hr />
-                {renderItems()}
+        <div className="bg-gray-100 p-6 rounded-lg shadow-lg max-w-xl mx-auto">
+            <h3 className="text-3xl font-bold text-gray-800 mb-6">Your Habits</h3>
+            <hr className="mb-6" />
+            <div className="space-y-4">{renderItems()}</div>
 
-                <button
-                    onClick={() => {
-                        reset();
-                        setOpen(true);
-                    }}
-                    className="flex flex-row space-x-2 m-auto py-2 pl-2 pr-4"
-                >
-                    <IconCirclePlus />
-                    <p className="">Add Habit</p>
-                </button>
-            </div>
+            <button
+                onClick={() => {
+                    reset();
+                    setOpen(true);
+                }}
+                className="flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
+            >
+                <IconCirclePlus className="mr-2" />
+                <span className="font-semibold">Add Habit</span>
+            </button>
 
-            <Modal open={open} setOpen={setOpen} title={"Add Habit"}>
-                <form onSubmit={handleSubmit(handleAddHabit)} className="space-y-2">
-                    <div className="space-y-1">
+            <Modal open={open} setOpen={setOpen} title={"Add New Habit"}>
+                <form onSubmit={handleSubmit(handleAddHabit)} className="space-y-6">
+                    <div className="space-y-2">
                         <input
                             type="text"
                             placeholder="Habit Title"
                             {...register("title", { required: "Habit Title is required", minLength: 2 })}
-                            className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-full"
+                            className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                         />
-                        {errors.title && <p className="text-red-1 text-xs">{errors.title.message as string}</p>}
+                        {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
                     </div>
 
-                    <div className="flex flex-row items-center space-x-2">
-                        <div className="space-y-1">
+                    <div className="flex space-x-4">
+                        <div className="flex-1 space-y-2">
                             <input
                                 type="number"
-                                placeholder="45"
-                                {...register("goalNumber", { required: "Goal Number is required", minLength: 1 })}
-                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-[5ch]"
+                                placeholder="Goal Number"
+                                {...register("goalNumber", { required: "Goal Number is required", min: 1 })}
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             {errors.goalNumber && (
-                                <p className="text-red-1 text-xs">{errors.goalNumber.message as string}</p>
+                                <p className="text-red-500 text-sm">{errors.goalNumber.message}</p>
                             )}
                         </div>
 
-                        <div className="space-y-1">
+                        <div className="flex-1 space-y-2">
                             <input
                                 type="text"
-                                placeholder="Minutes"
+                                placeholder="Goal Unit (e.g., Minutes)"
                                 {...register("goalUnit", { required: "Goal Units are required", minLength: 1 })}
-                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary"
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             {errors.goalUnit && (
-                                <p className="text-red-1 text-xs">{errors.goalUnit.message as string}</p>
+                                <p className="text-red-500 text-sm">{errors.goalUnit.message}</p>
                             )}
                         </div>
                     </div>
 
-                    <div className="flex flex-row justify-end pt-4">
-                        <button onClick={() => setOpen(false)} type="button">
-                            <p>Cancel</p>
+                    <div className="flex justify-end space-x-4 pt-4">
+                        <button
+                            onClick={() => setOpen(false)}
+                            type="button"
+                            className="text-gray-600 hover:text-gray-800"
+                        >
+                            <p className="font-semibold">Cancel</p>
                         </button>
-                        <button className="ml-4 bg-purple-1 text-white drop-shadow-md py-2 px-4 rounded-md">
-                            <p>Add</p>
+                        <button className="bg-gradient-to-r from-purple-500 to-purple-700 text-white drop-shadow-md py-2 px-4 rounded-lg hover:bg-gradient-to-l transition-colors duration-300">
+                            <p className="font-semibold">Add</p>
                         </button>
                     </div>
                 </form>

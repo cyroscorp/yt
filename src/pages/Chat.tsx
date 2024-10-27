@@ -81,7 +81,7 @@ const Chat: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
+    
             <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-4 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-4">Chat Room</h3>
                 <main className="flex-grow overflow-y-auto mb-4" style={{ maxHeight: "60vh" }}>
@@ -133,7 +133,7 @@ const Chat: React.FC = () => {
                     </footer>
                 )}
             </div>
-        </div>
+     
     );
 }
 

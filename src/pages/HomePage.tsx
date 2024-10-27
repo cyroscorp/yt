@@ -28,14 +28,13 @@ export default function HomePage() {
     return (
         <div className="space-y-2">
             <Nav />
-            <Chart habits={habits} />
-            <List habits={habits} setHabits={setHabits} />
-            
-            <Blog/>
-            <Me/>
-            <W/>
-            
             <Url/>
+            <Chart habits={habits} />
+            <Me/>
+            <List habits={habits} setHabits={setHabits} />
+            <W/>
+            <Blog/>
+            
             <Chat/>
         </div>
     );
