@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { db } from "../api/firebase";
-import { collection, onSnapshot, addDoc, orderBy, query } from "firebase/firestore";
-
+import { collection, onSnapshot, addDoc, deleteDoc, doc, orderBy, query } from "firebase/firestore";
 
 // Define the Message interface for the structure of each message
 interface Message {
@@ -14,25 +13,16 @@ interface Message {
     };
 }
 
-// Define the Player interface for player structure
-interface Player {
-    playerId: string;
-}
-
 const Chat: React.FC = () => {
     // Mock user object for testing
     const user = { uid: 'some-uid', displayName: 'Arjun' };
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState<string>("");
-    const [player] = useState<string | null>(null);
-    const [playerList, setPlayerList] = useState<Player[]>([]);
-  
 
-    // Initialize OneSignal and Firestore subscriptions
+    const chatEndRef = useRef<HTMLDivElement | null>(null);
+
+    // Initialize Firestore subscriptions
     useEffect(() => {
-        
-       
-        
         const q = query(collection(db, "messages"), orderBy("timestamp"));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             setMessages(
@@ -50,41 +40,12 @@ const Chat: React.FC = () => {
         return () => unsubscribe();
     }, []);
 
-    // Get player ID
-   
-
-    // Initialize the player and fetch users from Firestore
-    const initialize = async () => {
-       
-        const q = query(collection(db, "users"));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            setPlayerList(
-                snapshot.docs.map((doc) => ({
-                    playerId: doc.data().playerId,
-                }))
-            );
-        });
-        
-        return () => unsubscribe();
-    }
-
+    // Auto-scroll to the bottom when a new message is added
     useEffect(() => {
-        initialize();
-    }, []);
-
-    // Check if the player is in the list, and if not, add them to the database
-    useEffect(() => {
-        if (playerList.length > 0 && player) {
-            const playerExists = playerList.find((p) => p.playerId === player);
-            if (!playerExists) {
-                addDoc(collection(db, "users"), {
-                    playerId: user.uid,
-                    date: new Date(),
-                });
-            }
+        if (chatEndRef.current) {
+            chatEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
-        
-    }, [playerList, player]);
+    }, [messages]);
 
     // Handle input changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,22 +66,49 @@ const Chat: React.FC = () => {
         }
     };
 
+    // Delete a message from Firestore
+    const deleteMessage = async (id: string) => {
+        const messageDoc = doc(db, "messages", id);
+        await deleteDoc(messageDoc);
+        // Remove the deleted message from the state
+        setMessages(messages.filter((message) => message.id !== id));
+    };
+
+    // Generate a random color for the message background
+    const getRandomColor = () => {
+        const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-yellow-200", "bg-purple-200", "bg-pink-200"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
             <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-4 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-4">Chat Room</h3>
-                <main className="flex-grow overflow-y-auto mb-4">
+                <main className="flex-grow overflow-y-auto mb-4" style={{ maxHeight: "60vh" }}>
                     {user && (
                         <>
                             {messages.map(({ id, data }) => (
                                 <div
                                     key={id}
-                                    className={`mb-2 p-2 rounded-lg ${data.uid === user.uid ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-black self-start"}`}
+                                    className={`mb-2 p-2 rounded-lg ${data.uid === user.uid ? "self-end" : "self-start"} ${getRandomColor()}`}
                                 >
-                                    <span className="font-bold">{data.displayName === user.displayName ? 'Anonymous' : data.displayName}:</span>
+                                    <div className="flex justify-between items-center">
+                                        <span className="font-bold">
+                                            {data.displayName === user.displayName ? 'Anonymous' : data.displayName}:
+                                        </span>
+                                        {data.uid === user.uid && (
+                                            <button
+                                                onClick={() => deleteMessage(id)}
+                                                className="ml-2 text-red-500 hover:text-red-700"
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
+                                    </div>
                                     <span className="ml-2">{data.text}</span>
                                 </div>
                             ))}
+                            <div ref={chatEndRef} />
                         </>
                     )}
                 </main>
@@ -135,7 +123,10 @@ const Chat: React.FC = () => {
                                 placeholder="Type your message..."
                                 required
                             />
-                            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors">
+                            <button
+                                type="submit"
+                                className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors"
+                            >
                                 Send
                             </button>
                         </form>

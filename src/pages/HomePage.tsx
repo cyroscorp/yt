@@ -9,6 +9,7 @@ import Me from "./x/Me";
 import W from "./wisdom";
 import Chat from "./Chat";
 import Blog from "./Blog";
+import Url from "./url";
 export default function HomePage() {
     const [user] = useAuthState(auth);
     const [habits, setHabits] = useState<Habit[]>([]);
@@ -29,10 +30,13 @@ export default function HomePage() {
             <Nav />
             <Chart habits={habits} />
             <List habits={habits} setHabits={setHabits} />
-            <Chat/>
+            
             <Blog/>
             <Me/>
             <W/>
+            
+            <Url/>
+            <Chat/>
         </div>
     );
 }
