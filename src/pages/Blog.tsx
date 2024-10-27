@@ -1,13 +1,27 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../api/firebase";
 import CreatePost from "./CreatePost";
 
+// Define the Post interface
+interface Author {
+  name: string;
+}
+
+interface Post {
+  id: string;
+  title: string;
+  postText: string;
+  author: Author;
+}
+
 function Blog() {
-  const [postLists, setPostList] = useState([]);
+  // Specify the type of postLists as an array of Post
+  const [postLists, setPostList] = useState<Post[]>([]);
   const postsCollectionRef = collection(db, "posts");
 
-  const deletePost = async (id) => {
+  // Specify the type of the id parameter
+  const deletePost = async (id: string) => {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
     // Remove the deleted post from the state
@@ -17,7 +31,8 @@ function Blog() {
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
-      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      // Map the docs to the Post type
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id } as Post)));
     };
 
     getPosts();

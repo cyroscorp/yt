@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import soundFile from './x/b.mp3'; // Import the MP3 file for quote
 import song1 from './x/memory.mp3'; // Import other MP3 files for music player
 import song2 from './x/fainted.mp3';

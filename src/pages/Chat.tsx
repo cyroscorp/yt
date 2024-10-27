@@ -1,50 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../api/firebase";
 import { collection, onSnapshot, addDoc, orderBy, query } from "firebase/firestore";
-import OneSignal from 'react-onesignal';
 
-function Chat() {
-    const arjun = '=>';
-    const [user] = arjun;
-    const [messages, setMessages] = useState([]);
-    const [input, setInput] = useState("");
-    const [player, setPlayer] = useState(null);
-    const [playerList, setPlayerList] = useState([]);
-    const [initialized, setInitialized] = useState(false);
 
+// Define the Message interface for the structure of each message
+interface Message {
+    id: string;
+    data: {
+        text: string;
+        uid: string;
+        displayName: string;
+        timestamp: Date;
+    };
+}
+
+// Define the Player interface for player structure
+interface Player {
+    playerId: string;
+}
+
+const Chat: React.FC = () => {
+    // Mock user object for testing
+    const user = { uid: 'some-uid', displayName: 'Arjun' };
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [input, setInput] = useState<string>("");
+    const [player] = useState<string | null>(null);
+    const [playerList, setPlayerList] = useState<Player[]>([]);
+  
+
+    // Initialize OneSignal and Firestore subscriptions
     useEffect(() => {
-        OneSignal.init({ appId: '1e5fcb25-10c5-465c-a2a3-d7f7b5893af8' }).then(() => {
-            setInitialized(true);
-            OneSignal.on('subscriptionChange', function (isSubscribed) {
-                OneSignal.getUserId().then(function (userId) {
-                    setPlayer(userId);
-                }).catch(function (error) {
-                    console.log("OneSignal User ID Error:", error);
-                });
-            });
-        });
-
+        
+       
+        
         const q = query(collection(db, "messages"), orderBy("timestamp"));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             setMessages(
                 snapshot.docs.map((doc) => ({
                     id: doc.id,
-                    data: doc.data(),
+                    data: {
+                        text: doc.data().text,
+                        uid: doc.data().uid,
+                        displayName: doc.data().displayName,
+                        timestamp: doc.data().timestamp.toDate(), // Convert to Date
+                    }
                 }))
             );
         });
         return () => unsubscribe();
     }, []);
 
-    const getPlayerIdFunc = async () => {
-        const playerId = await OneSignal.getUserId().catch((error) => {
-            console.log("OneSignal User ID Error:", error);
-        });
-        return playerId;
-    }
+    // Get player ID
+   
 
+    // Initialize the player and fetch users from Firestore
     const initialize = async () => {
-        const playerId = await getPlayerIdFunc();
+       
         const q = query(collection(db, "users"));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             setPlayerList(
@@ -53,46 +64,42 @@ function Chat() {
                 }))
             );
         });
-        setPlayer(playerId);
+        
         return () => unsubscribe();
     }
 
     useEffect(() => {
         initialize();
-    }, [player, OneSignal]);
+    }, []);
 
-    const setPlayerUsingFn = async () => {
-        const playerId = await getPlayerIdFunc();
-        setPlayer(playerId);
-    }
-
+    // Check if the player is in the list, and if not, add them to the database
     useEffect(() => {
         if (playerList.length > 0 && player) {
             const playerExists = playerList.find((p) => p.playerId === player);
             if (!playerExists) {
                 addDoc(collection(db, "users"), {
-                    playerId: arjun,
+                    playerId: user.uid,
                     date: new Date(),
                 });
             }
         }
-        if (!player) {
-            setPlayerUsingFn();
-        }
+        
     }, [playerList, player]);
 
-    const handleInputChange = (e) => {
+    // Handle input changes
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
     };
 
-    const sendMessage = async (e) => {
+    // Send a message to the Firestore
+    const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (input.trim()) {
             await addDoc(collection(db, "messages"), {
                 text: input,
                 timestamp: new Date(),
-                uid: arjun,
-                displayName: arjun,
+                uid: user.uid,
+                displayName: user.displayName,
             });
             setInput("");
         }
@@ -100,8 +107,7 @@ function Chat() {
 
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center p-4">
-            
-            <div className="w-full max-w-3xl  bg-white rounded-lg shadow-lg p-4 flex flex-col flex-grow">
+            <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-4 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-4">Chat Room</h3>
                 <main className="flex-grow overflow-y-auto mb-4">
                     {user && (
@@ -109,11 +115,9 @@ function Chat() {
                             {messages.map(({ id, data }) => (
                                 <div
                                     key={id}
-                                    className={`mb-2 p-2 rounded-lg ${
-                                        data.uid === user.uid ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-black self-start"
-                                    }`}
+                                    className={`mb-2 p-2 rounded-lg ${data.uid === user.uid ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-black self-start"}`}
                                 >
-                                    <span className="font-bold">{data.displayName === user.displayName ? 'You' : data.displayName}:</span>
+                                    <span className="font-bold">{data.displayName === user.displayName ? 'Anonymous' : data.displayName}:</span>
                                     <span className="ml-2">{data.text}</span>
                                 </div>
                             ))}

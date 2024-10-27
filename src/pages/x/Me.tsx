@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import alarmSoundFile from "./b.mp3"; // Import the alarm sound
 import interactionSoundFile from "./b.mp3"; // Import the interaction sound
 
@@ -9,13 +9,11 @@ export default function PomodoroTimer() {
   const [time, setTime] = useState(defaultWorkTime);
   const [isRunning, setIsRunning] = useState(false);
   const [onBreak, setOnBreak] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true); // State for sound toggle
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
-  // Create audio objects
   const alarmSound = new Audio(alarmSoundFile);
   const interactionSound = new Audio(interactionSoundFile);
 
-  // Load timer settings from local storage
   useEffect(() => {
     const savedTime = localStorage.getItem("pomodoro-time");
     const savedIsRunning = localStorage.getItem("pomodoro-isRunning");
@@ -26,21 +24,19 @@ export default function PomodoroTimer() {
     if (savedOnBreak) setOnBreak(JSON.parse(savedOnBreak));
   }, []);
 
-  // Save timer settings to local storage
   useEffect(() => {
-    localStorage.setItem("pomodoro-time", time);
-    localStorage.setItem("pomodoro-isRunning", isRunning);
-    localStorage.setItem("pomodoro-onBreak", onBreak);
+    localStorage.setItem("pomodoro-time", time.toString());
+    localStorage.setItem("pomodoro-isRunning", JSON.stringify(isRunning));
+    localStorage.setItem("pomodoro-onBreak", JSON.stringify(onBreak));
   }, [time, isRunning, onBreak]);
 
-  // Timer countdown
   useEffect(() => {
-    let interval = null;
+    let interval: NodeJS.Timeout | null = null;
     if (isRunning) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime - 1);
       }, 1000);
-    } else {
+    } else if (interval) {
       clearInterval(interval);
     }
 
@@ -54,47 +50,45 @@ export default function PomodoroTimer() {
       }
       setIsRunning(false);
 
-      // Play the alarm sound if sound is enabled
       if (soundEnabled) {
         alarmSound.play();
       }
     }
 
-    return () => clearInterval(interval);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
   }, [isRunning, time, onBreak, soundEnabled]);
 
-  // Format time in mm:ss
-  const formatTime = (time) => {
+  const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  // Play sound function
   const playSound = () => {
     if (soundEnabled) {
       interactionSound.play();
     }
   };
 
-  // Start or pause the timer
   const toggleTimer = () => {
     setIsRunning(!isRunning);
-    playSound(); // Play sound on toggle
+    playSound();
   };
 
-  // Reset the timer
   const resetTimer = () => {
     setIsRunning(false);
     setOnBreak(false);
     setTime(defaultWorkTime);
-    playSound(); // Play sound on reset
+    playSound();
   };
 
-  // Toggle sound
   const toggleSound = () => {
     setSoundEnabled(!soundEnabled);
-    playSound(); // Play sound on toggle sound
+    playSound();
   };
 
   return (

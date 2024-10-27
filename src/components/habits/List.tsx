@@ -13,7 +13,6 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
     const [user] = useAuthState(auth);
 
     console.log(habits);
-    const arjun = '=>';
 
     const today = getCurrentDate();
     const {
@@ -42,7 +41,6 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                     active: true,
                     history: { [today]: { goalNumber: data.goalNumber, goalUnit: data.goalUnit, progress: 0 } },
                 },
-               
             ]);
         }
         setOpen(false);

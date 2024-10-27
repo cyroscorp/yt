@@ -6,12 +6,9 @@ import { auth } from "../api/firebase";
 import Nav from "../components/Nav";
 import Chart from "../components/chart/Chart";
 import Me from "./x/Me";
+import W from "./wisdom";
 import Chat from "./Chat";
 import Blog from "./Blog";
-import W from "./wisdom";
-import Note from "../a/Note";
-import Test from "./now";
-
 export default function HomePage() {
     const [user] = useAuthState(auth);
     const [habits, setHabits] = useState<Habit[]>([]);
@@ -27,20 +24,15 @@ export default function HomePage() {
         populateHabits();
     }, [user]);
 
-    return (<>
-    
+    return (
         <div className="space-y-2">
             <Nav />
             <Chart habits={habits} />
-            <Me/>
             <List habits={habits} setHabits={setHabits} />
             <Chat/>
             <Blog/>
+            <Me/>
             <W/>
-            <Note/>
-            <Test/>
-            
         </div>
-        </>
     );
 }
