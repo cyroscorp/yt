@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-white: #f7f8f9;
+    --bg-black: #131314;
+    --bg-grey: #ffffff;
+    --bg-purple: #4942e4;
+}
+
+html {
+    background-color: var(--bg-white);
+}
+
+html.dark {
+    background-color: var(--bg-black);
+}
+
+h1 {
+    font-family: "Geologica", sans-serif;
+    font-weight: 600;
+    font-size: 3.375rem;
+}
+
+h2 {
+    font-family: "Geologica", sans-serif;
+    font-weight: 600;
+    font-size: 2.25rem;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Geologica", sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+::placeholder,
+.input-text {
+    font-family: "Geologica", sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+p,
+input,
+select,
+::placeholder,
+.input-text {
+    font-family: "Geologica", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.tooltip {
+    background-color: #fff;
+    padding: 5px;
+    position: absolute;
+    border-radius: 10px;
+    width: fit-content;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+    font-family: "Geologica", sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
+
+.dark {
+    color-scheme: dark;
+}
