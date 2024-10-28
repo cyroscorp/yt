@@ -84,7 +84,7 @@ const QuoteBox = () => {
       <div className="bg-gray-100 p-6 rounded-lg shadow-md w-80 text-center">
         <p className="text-lg mb-4">{quotes[currentQuoteIndex]}</p>
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
           onClick={showNextQuote}
         >
           Show Next Quote
@@ -95,7 +95,7 @@ const QuoteBox = () => {
         <h2 className="text-xl mb-4">{songs[currentSongIndex].title}</h2>
         <div className="mb-4">
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors mr-2"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors mr-2"
             onClick={playPreviousSong}
           >
             Previous
@@ -107,7 +107,7 @@ const QuoteBox = () => {
             Play/Pause
           </button>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors ml-2"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors ml-2"
             onClick={playNextSong}
           >
             Next

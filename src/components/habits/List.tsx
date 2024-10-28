@@ -62,7 +62,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                     reset();
                     setOpen(true);
                 }}
-                className="flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
             >
                 <IconCirclePlus className="mr-2" />
                 <span className="font-semibold">Add Actions</span>
@@ -110,7 +110,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                         <button onClick={() => setOpen(false)} type="button">
                             <p>Cancel</p>
                         </button>
-                        <button className="ml-4 bg-purple-1 text-white drop-shadow-md py-2 px-4 rounded-md">
+                        <button className="ml-4 bg-green-1 text-white drop-shadow-md py-2 px-4 rounded-md">
                             <p>Add</p>
                         </button>
                     </div>

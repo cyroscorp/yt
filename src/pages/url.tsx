@@ -81,13 +81,13 @@ const UrlStorageBox: React.FC = () => {
                         value={input}
                         onChange={handleInputChange}
                         type="text"
-                        className="flex-grow rounded-l-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-grow rounded-l-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                         placeholder="Add a new URL..."
                         required
                     />
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors"
+                        className="bg-green-500 text-white px-4 py-2 rounded-r-lg hover:bg-green-600 transition-colors"
                     >
                         Add
                     </button>
@@ -100,7 +100,7 @@ const UrlStorageBox: React.FC = () => {
                                     href={data.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-500 hover:underline"
+                                    className="text-green-500 hover:underline"
                                 >
                                     {data.url}
                                 </a>

@@ -100,7 +100,7 @@ export default function PomodoroTimer() {
       <div className="flex space-x-4">
         <button
           onClick={toggleTimer}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
           {isRunning ? "Pause" : "Start"}
         </button>

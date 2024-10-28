@@ -11,6 +11,8 @@ import Chat from "./Chat";
 import Blog from "./Blog";
 import Url from "./url";
 import Blur from "./blur";
+import Chatbot from "./Chatbot";
+import In from '../pompom/hope';
 export default function HomePage() {
     const [user] = useAuthState(auth);
     const [habits, setHabits] = useState<Habit[]>([]);
@@ -28,8 +30,10 @@ export default function HomePage() {
 
     return (
         <div className="space-y-2">
+          
             <Blur/>
             <Nav />
+            <Chatbot/>
             <Url/>
             <Chart habits={habits} />
             <Me/>
@@ -38,6 +42,8 @@ export default function HomePage() {
             <Blog/>
             
             <Chat/>
+           
+            <In/>
         </div>
     );
 }

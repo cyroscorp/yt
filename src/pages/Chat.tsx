@@ -76,7 +76,7 @@ const Chat: React.FC = () => {
 
     // Generate a random color for the message background
     const getRandomColor = () => {
-        const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-yellow-200", "bg-purple-200", "bg-pink-200"];
+        const colors = ["bg-red-200", "bg-green-200", "bg-green-200", "bg-yellow-200", "bg-purple-200", "bg-pink-200"];
         return colors[Math.floor(Math.random() * colors.length)];
     };
 
@@ -119,13 +119,13 @@ const Chat: React.FC = () => {
                                 value={input}
                                 onChange={handleInputChange}
                                 type="text"
-                                className="flex-grow rounded-l-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="flex-grow rounded-l-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 placeholder="Type your message..."
                                 required
                             />
                             <button
                                 type="submit"
-                                className="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors"
+                                className="bg-green-500 text-white px-4 py-2 rounded-r-lg hover:bg-green-600 transition-colors"
                             >
                                 Send
                             </button>

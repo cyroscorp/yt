@@ -111,7 +111,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                         className={`rounded-full h-5 w-5 transition duration-300 ${
                             habit.history[today].progress >= habit.history[today].goalNumber
                                 ? "bg-green-500"
-                                : "border-2 border-blue-500"
+                                : "border-2 border-green-500"
                         }`}
                         onClick={() =>
                             handleSetProgress(
@@ -127,7 +127,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                 <div className="flex items-center space-x-2">
                     <button
                         onClick={() => handleSetProgress(habit.history[today].progress - 1)}
-                        className="bg-blue-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-blue-600"
+                        className="bg-green-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-green-600"
                     >
                         -
                     </button>
@@ -137,7 +137,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                     </p>
                     <button
                         onClick={() => handleSetProgress(habit.history[today].progress + 1)}
-                        className="bg-blue-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-blue-600"
+                        className="bg-green-500 text-white rounded-full px-3 py-1 transition duration-200 hover:bg-green-600"
                     >
                         +
                     </button>
@@ -151,7 +151,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                         <div className="p-2 flex flex-col items-start bg-white dark:bg-gray-800 rounded-md shadow-md">
                             <button
                                 onClick={() => setEditOpen(true)}
-                                className="text-gray-800 dark:text-white hover:text-blue-500 transition duration-200"
+                                className="text-gray-800 dark:text-white hover:text-green-500 transition duration-200"
                             >
                                 Edit
                             </button>
@@ -173,7 +173,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                             type="text"
                             placeholder="Habit Title"
                             {...register("title", { required: "Habit Title is required", minLength: 2 })}
-                            className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                            className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
                         />
                         {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
                     </div>
@@ -184,7 +184,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                                 type="number"
                                 placeholder="Goal Number"
                                 {...register("goalNumber", { required: "Goal Number is required", min: 1 })}
-                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                             {errors.goalNumber && <p className="text-red-500 text-sm">{errors.goalNumber.message}</p>}
                         </div>
@@ -194,7 +194,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                                 type="text"
                                 placeholder="Goal Unit"
                                 {...register("goalUnit", { required: "Goal Units are required", minLength: 1 })}
-                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                             />
                             {errors.goalUnit && <p className="text-red-500 text-sm">{errors.goalUnit.message}</p>}
                         </div>
@@ -208,7 +208,7 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                         >
                             Cancel
                         </button>
-                        <button className="bg-blue-600 text-white rounded-lg py-2 px-4 transition duration-300 hover:bg-blue-700">
+                        <button className="bg-green-600 text-white rounded-lg py-2 px-4 transition duration-300 hover:bg-green-700">
                             Edit
                         </button>
                     </div>

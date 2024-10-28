@@ -10,7 +10,7 @@ const BlurOverlay: React.FC = () => {
     // Hide the overlay after 3 seconds
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 500);
+    }, 900);
 
     // Cleanup timer on unmount
     return () => clearTimeout(timer);
@@ -21,7 +21,7 @@ const BlurOverlay: React.FC = () => {
       {isVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
           <div className="flex flex-col items-center">
-            <h1 className="text-white text-3xl mb-4">Under Construction</h1>
+            <h1 className="text-white text-3xl mb-4">Scroll Down To Proceed</h1>
             <div className="relative w-64 h-4 bg-gray-700 rounded-full overflow-hidden">
               <div className="absolute top-0 left-0 h-full bg-green-500 animate-progress" />
             </div>
