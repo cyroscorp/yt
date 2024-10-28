@@ -2,26 +2,38 @@ import { useState, useRef } from 'react';
 import soundFile from './x/b.mp3'; // Import the MP3 file for quote
 import song1 from './x/memory.mp3'; // Import other MP3 files for music player
 import song2 from './x/fainted.mp3';
+import winter from './music/winter.mp3';
+import p from './music/a.mp3';
 
 const QuoteBox = () => {
   // List of quotes
   const quotes = [
-    "The only limit to our realization of tomorrow is our doubts of today.",
-    "Success is not the key to happiness. Happiness is the key to success.",
-    "The future belongs to those who believe in the beauty of their dreams.",
+    "Don't explain your philosophy. Embody it",
+    "It is not the man who has too little, but the man who craves more, that is poor",
+    "The best revenge is to be unlike him who performed the injury",
+    "You are a little soul carrying around a corpse.",
+    "We suffer more often in imagination than in reality.",
+    "No man is free who is not a master of himself",
     "Don't watch the clock; do what it does. Keep going.",
     "Your time is limited, so don't waste it living someone else's life.",
-    "The best way to predict the future is to create it.",
-    "Do not wait to strike till the iron is hot, but make it hot by striking.",
-    "The only way to do great work is to love what you do.",
-    "Believe you can and you're halfway there.",
-    "Act as if what you do makes a difference. It does."
+    "Do not waste time on what you cannot control",
+    "The universe is change; our life is what our thoughts make it",
+    "Wealth consists not in having great possessions, but in having few wants",
+    "It's not what happens to you, but how you react to it that matters.",
+    "You have power over your mind—not outside events. Realize this, and you will find strength",
+    "Waste no more time arguing about what a good man should be. Be one",
+    "If you want to be great, you have to be willing to be misunderstood",
+    "Suffering is the true test of life.",
+    "You are not going to find your greatness in your comfort zone.",
   ];
 
   // List of songs
   const songs = [
-    { title: "Song 1", file: song1 },
-    { title: "Song 2", file: song2 }
+    { title: "Memory Reboot", file: song1 },
+   
+    { title: "Fainted", file: song2 },
+    { title: "Captain America Winter Soldier theme", file: winter },
+    { title: "Pangura Ban", file: p },
   ];
 
   // State for quotes, music player, and audio

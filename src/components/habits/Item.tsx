@@ -215,10 +215,10 @@ export default function Item({ habit, setHabits }: { habit: Habit; setHabits: (v
                 </form>
             </Modal>
 
-            <Modal open={removeOpen} setOpen={setRemoveOpen} title={"Remove Habit"}>
+            <Modal open={removeOpen} setOpen={setRemoveOpen} title={"Remove Action"}>
                 <div className="max-w-md">
                     <p className="text-gray-800 dark:text-gray-300 mb-4">
-                        Are you sure you want to delete this habit? Select delete to remove it permanently, or retire it to keep the data.
+                    Hi i am arjun , looks like you are quitting i just want you to pull a little bit more harder dont be pathetic just embrace greatness and enjoy this pain this is where you find your true self
                     </p>
                     <div className="flex justify-end space-x-4">
                         <button onClick={() => setRemoveOpen(false)} type="button" className="text-gray-600 hover:text-gray-800 transition duration-200">

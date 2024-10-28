@@ -35,8 +35,8 @@ export default function Chart({ habits }: { habits: Habit[] }) {
     // console.log(populateGridData());
 
     return (
-        <div>
-            <h3>Chart</h3>
+        <div className="text-blue-1">
+            <h3>SelfReflection make everyday count</h3>
             <hr className="mb-2" />
             <div className="bg-white flex justify-center rounded-md drop-shadow py-4 px-1">
                 <GridV0 values={populateGridData()} until={getCurrentDate()} />

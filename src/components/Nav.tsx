@@ -10,6 +10,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
 import Modal from "./Modal";
 import { deleteUserById, getUser } from "../api/user";
 
+// Import your local image
+import myImage from './i.jpg'; // Adjust the path as necessary
+
 interface NameForm {
     name: string;
 }
@@ -21,6 +24,7 @@ export default function Nav() {
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [user] = useAuthState(auth);
+    const [imagePopupOpen, setImagePopupOpen] = useState(false); // State for image popup
     const navigate = useNavigate();
 
     const {
@@ -37,7 +41,7 @@ export default function Nav() {
                 setName(data ? data.name : "");
             }
         }
-        const googleAuth = user?.providerData[0].providerId == "google.com";
+        const googleAuth = user?.providerData[0].providerId === "google.com";
         if (googleAuth) {
             if (user?.displayName) {
                 setValue("name", user.displayName);
@@ -113,7 +117,15 @@ export default function Nav() {
             <div className="flex justify-between items-center py-4 space-x-1">
                 <h3 className="text-green-1">ProBoost.</h3>
 
-                <div>
+                <div className="flex items-center space-x-2">
+                    {/* Toggle Button for Image Popup */}
+                    <button
+                        onClick={() => setImagePopupOpen(!imagePopupOpen)}
+                        className="border-2 border-green-1 px-2 py-1 rounded-lg"
+                    >
+                        <p className="text-green-1">Donate</p>
+                    </button>
+
                     {user ? (
                         <Popover placement="bottom-end">
                             <PopoverTrigger className="flex border-2 border-purple-1 px-2 py-1 rounded-lg space-x-1 text-purple-1 items-center">
@@ -150,6 +162,26 @@ export default function Nav() {
                 </div>
             </div>
 
+            {/* Image Popup */}
+            {imagePopupOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg p-4 relative w-[90%] max-w-[500px]">
+                        <button
+                            onClick={() => setImagePopupOpen(false)}
+                            className="absolute top-2 right-2 text-xl text-gray-600 hover:text-gray-800"
+                        >
+                            &times; {/* Cross button to close the popup */}
+                        </button>
+                        <div className="flex flex-col items-center">
+                            <img src={myImage} alt="Popup" className="w-full h-auto mb-2" /> {/* Image */}
+                            <p className="text-center text-gray-700">
+                                You can donate me some money to support me as well as to make this site free as we are working tirelessly to bring you the best expericence possible
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <Modal open={changeNameOpen} setOpen={setChangeNameOpen} title="Change Name">
                 <form onSubmit={handleSubmit(handleChangeName)}>
                     <div className="space-y-1">
@@ -178,7 +210,7 @@ export default function Nav() {
                     <p className="mb-4">
                         Are you sure you want to delete your account? All habit tracking data will be lost.
                     </p>
-                    {user?.providerData[0].providerId == "password" && (
+                    {user?.providerData[0].providerId === "password" && (
                         <div className="space-y-1 mb-4">
                             <p>Enter your password to confirm account deletion.</p>
                             <input

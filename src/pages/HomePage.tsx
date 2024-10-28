@@ -10,6 +10,7 @@ import W from "./wisdom";
 import Chat from "./Chat";
 import Blog from "./Blog";
 import Url from "./url";
+import Blur from "./blur";
 export default function HomePage() {
     const [user] = useAuthState(auth);
     const [habits, setHabits] = useState<Habit[]>([]);
@@ -27,6 +28,7 @@ export default function HomePage() {
 
     return (
         <div className="space-y-2">
+            <Blur/>
             <Nav />
             <Url/>
             <Chart habits={habits} />

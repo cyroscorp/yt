@@ -75,7 +75,7 @@ const UrlStorageBox: React.FC = () => {
        
             <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-4 flex flex-col transition-all"
                  style={{ maxHeight: urls.length > 0 ? "70vh" : "200px", overflowY: "auto" }}>
-                <h3 className="text-xl font-semibold mb-4">URL Storage Box</h3>
+                <h3 className="text-xl font-semibold mb-4">Most important/useful Website (add as per your choice)</h3>
                 <form onSubmit={addUrl} className="flex items-center mb-4">
                     <input
                         value={input}

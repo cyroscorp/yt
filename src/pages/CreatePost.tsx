@@ -25,7 +25,7 @@ function CreatePost() {
   return (
     <div className="createPostPage container mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
       <div className="cpContainer max-w-2xl mx-auto">
-        <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">Create a Post</h1>
+        <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">Post your thoughts</h1>
         <div className="inputGp mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">Title:</label>
           <input

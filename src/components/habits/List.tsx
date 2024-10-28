@@ -53,7 +53,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
 
     return (
         <div className="bg-gray-100 p-6 rounded-lg shadow-lg max-w-xl mx-auto">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6">Your Habits</h3>
+            <h3 className="text-3xl font-bold text-yellow-800 mb-6">Your Actions (Repeatable to callous your mind) </h3>
             <hr className="mb-6" />
             <div className="space-y-4">{renderItems()}</div>
 
@@ -65,7 +65,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                 className="flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
             >
                 <IconCirclePlus className="mr-2" />
-                <span className="font-semibold">Add Habit</span>
+                <span className="font-semibold">Add Actions</span>
             </button>
 
             <Modal open={open} setOpen={setOpen} title={"Add New Habit"}>
