@@ -92,21 +92,21 @@ export default function PomodoroTimer() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-      <h1 className="text-3xl font-bold mb-4">
+    <div className="bg-black p-8 rounded-lg shadow-lg text-center">
+      <h1 className="text-white font-bold mb-4">
         {onBreak ? "Break Time" : "Work Time"}
       </h1>
-      <p className="text-6xl font-mono mb-8">{formatTime(time)}</p>
+      <p className="text-6xl text-white font-mono mb-8">{formatTime(time)}</p>
       <div className="flex space-x-4">
         <button
           onClick={toggleTimer}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded"
         >
           {isRunning ? "Pause" : "Start"}
         </button>
         <button
           onClick={resetTimer}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-red-500 hover:bg-red-700 text-black font-bold py-2 px-4 rounded"
         >
           Reset
         </button>
@@ -114,7 +114,7 @@ export default function PomodoroTimer() {
           onClick={toggleSound}
           className={`${
             soundEnabled ? "bg-green-500" : "bg-gray-500"
-          } hover:bg-green-700 text-white font-bold py-2 px-4 rounded`}
+          } hover:bg-green-700 text-black font-bold py-2 px-4 rounded`}
         >
           {soundEnabled ? "Sound On" : "Sound Off"}
         </button>

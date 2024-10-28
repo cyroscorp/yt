@@ -5,10 +5,10 @@ import RegisterPage from "./pages/RegisterPage";
 
 
 function App() {
-    return (
-        <div className="flex flex-col min-h-screen max-w-[800px] px-10 m-auto text-t-primary bg-b-primary dark:text-dt-primary dark:bg-db-primary">
+    return (<div className="bg-black">
+        <div className="flex flex-col min-h-screen max-w-[800px] px-10 m-auto text-t-primary bg-gray-800">
             <Router>
-                <div id="content" style={{ flex: 1 }}>
+                <div className="bg-black" id="content" style={{ flex: 1 }}>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<LoginPage />} />
@@ -17,6 +17,7 @@ function App() {
                 </div>
             </Router>
          
+        </div>
         </div>
     );
 }

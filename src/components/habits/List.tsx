@@ -52,7 +52,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
     }
 
     return (
-        <div className="bg-gray-100 p-6 rounded-lg shadow-lg max-w-xl mx-auto">
+        <div className="bg-black p-6 rounded-lg shadow-lg max-w-xl mx-auto">
             <h3 className="text-3xl font-bold text-yellow-800 mb-6">Your Actions (Repeatable to callous your mind) </h3>
             <hr className="mb-6" />
             <div className="space-y-4">{renderItems()}</div>
@@ -62,7 +62,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                     reset();
                     setOpen(true);
                 }}
-                className="flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
+                className="flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 text-black py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-l transition-all duration-300 transform hover:scale-105"
             >
                 <IconCirclePlus className="mr-2" />
                 <span className="font-semibold">Add Actions</span>
@@ -110,7 +110,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                         <button onClick={() => setOpen(false)} type="button">
                             <p>Cancel</p>
                         </button>
-                        <button className="ml-4 bg-green-1 text-white drop-shadow-md py-2 px-4 rounded-md">
+                        <button className="ml-4 bg-green-1 text-black drop-shadow-md py-2 px-4 rounded-md">
                             <p>Add</p>
                         </button>
                     </div>

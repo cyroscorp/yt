@@ -58,21 +58,21 @@ const ChatBot: React.FC = () => {
       {/* Chat Icon/Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 focus:outline-none"
+        className="bg-green-500 text-black p-3 rounded-full shadow-lg hover:bg-green-600 focus:outline-none"
       >
         {isOpen ? 'Close 🤖' : '🤖'}
       </button>
 
       {/* Chat Box */}
       {isOpen && (
-        <div className="max-w-md w-80 p-4 mt-2 bg-gray-100 rounded-lg shadow-md">
-          <div className="h-64 overflow-y-auto mb-4 bg-white p-3 rounded-md shadow-inner">
+        <div className="max-w-md w-80 p-4 mt-2 bg-black rounded-lg shadow-md">
+          <div className="h-64 overflow-y-auto mb-4 bg-black p-3 rounded-md shadow-inner">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`mb-2 p-2 rounded-lg ${
                   message.isUser
-                    ? 'bg-green-500 text-white text-right'
+                    ? 'bg-green-500 text-black text-right'
                     : 'bg-gray-300 text-black text-left'
                 }`}
               >
@@ -98,7 +98,7 @@ const ChatBot: React.FC = () => {
             />
             <button
               onClick={handleSend}
-              className="p-2 bg-green-500 text-white rounded-r-lg hover:bg-green-600"
+              className="p-2 bg-green-500 text-black rounded-r-lg hover:bg-green-600"
             >
               Send
             </button>

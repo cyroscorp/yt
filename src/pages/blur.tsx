@@ -19,9 +19,9 @@ const BlurOverlay: React.FC = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 backdrop-blur-sm z-50">
           <div className="flex flex-col items-center">
-            <h1 className="text-white text-3xl mb-4">Scroll Down To Proceed</h1>
+            <h1 className="text-white text-3xl mb-4">Touch/Click To Proceed</h1>
             <div className="relative w-64 h-4 bg-gray-700 rounded-full overflow-hidden">
               <div className="absolute top-0 left-0 h-full bg-green-500 animate-progress" />
             </div>

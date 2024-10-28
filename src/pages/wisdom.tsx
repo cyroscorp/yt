@@ -80,34 +80,34 @@ const QuoteBox = () => {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center h-50% space-x-8">
-      <div className="bg-gray-100 p-6 rounded-lg shadow-md w-80 text-center">
-        <p className="text-lg mb-4">{quotes[currentQuoteIndex]}</p>
+    <div className="flex flex-row bg-gray-900 items-center justify-center h-50% space-x-8">
+      <div className="bg-black p-6 rounded-lg shadow-md w-80 text-center">
+        <p className="text-white mb-4">{quotes[currentQuoteIndex]}</p>
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+          className="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600 transition-colors"
           onClick={showNextQuote}
         >
           Show Next Quote
         </button>
       </div>
       
-      <div className="bg-gray-100 p-6 rounded-lg shadow-md w-80 text-center">
-        <h2 className="text-xl mb-4">{songs[currentSongIndex].title}</h2>
+      <div className="bg-black p-6 rounded-lg shadow-md w-80 text-center">
+        <h2 className="text-white mb-4">{songs[currentSongIndex].title}</h2>
         <div className="mb-4">
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors mr-2"
+            className="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600 transition-colors mr-2"
             onClick={playPreviousSong}
           >
             Previous
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
+            className="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600 transition-colors"
             onClick={togglePlayPause}
           >
             Play/Pause
           </button>
           <button
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors ml-2"
+            className="bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600 transition-colors ml-2"
             onClick={playNextSong}
           >
             Next

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const Starfield: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [showStarfield, setShowStarfield] = useState(true);
+  const [showText, setShowText] = useState(false); // State for controlling text visibility
   let speed = 0.05; // Initial speed
   let stars: Star[] = [];
 
@@ -98,22 +99,35 @@ const Starfield: React.FC = () => {
     draw();
 
     const timer = setTimeout(() => {
+      setShowText(true); // Show the text after 2 seconds
+    }, 2500);
+
+    // Hide the starfield after 3 seconds
+    const hideStarfieldTimer = setTimeout(() => {
       setShowStarfield(false); // Hide the starfield after 3 seconds
     }, 3000);
 
     return () => {
       clearTimeout(timer); // Cleanup the timer on unmount
+      clearTimeout(hideStarfieldTimer); // Cleanup the hide starfield timer
       canvas.removeEventListener('mouseenter', handleMouseEnter); // Cleanup mouse enter event listener
       canvas.removeEventListener('mouseleave', handleMouseLeave); // Cleanup mouse leave event listener
     };
   }, []);
 
   return (
-    <div
-      className={`fixed top-0 left-0 w-full h-full transition-opacity duration-1000 ${showStarfield ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-      style={{ zIndex: 9999 }} // Ensure it appears on top of all other content
-    >
-      <canvas ref={canvasRef} />
+    <div className="relative w-full h-full">
+      <div
+        className={`fixed top-0 left-0 w-full h-full transition-opacity duration-1000 ${showStarfield ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        style={{ zIndex: 40 }} // Ensure it appears on top of all other content
+      >
+        <canvas ref={canvasRef} />
+      </div>
+      {showText && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl font-bold" style={{ zIndex: 10000 }}>
+          
+        </div>
+      )}
     </div>
   );
 };

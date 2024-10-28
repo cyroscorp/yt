@@ -26,7 +26,7 @@ export default function LoginPage() {
     };
     return (
         <div className="flex justify-center items-center w-full h-screen">
-            <div className="flex flex-col bg-b-secondary dark:bg-db-secondary p-8 rounded-lg drop-shadow-md space-y-4">
+            <div className="flex flex-col bg-black p-8 rounded-lg drop-shadow-md space-y-4">
                 <button onClick={() => navigate("/")}>
                     <h1 className="text-green-1 m-auto">ProBoost.</h1>
                 </button>
@@ -55,7 +55,7 @@ export default function LoginPage() {
                     <input
                         type="submit"
                         value="Login"
-                        className="bg-green-1 text-white drop-shadow-md py-2 rounded-md"
+                        className="bg-green-1 text-black drop-shadow-md py-2 rounded-md"
                     />
                 </form>
 
@@ -78,7 +78,7 @@ export default function LoginPage() {
                     <p className="text-t-tertiary text-sm">Forgot Password</p>
                 </Link>
                 <div className="flex flex-row space-x-2">
-                    <p>Don't have an account?</p>
+                    <p className="text-white">Don't have an account?</p>
                     <p>
                         <Link to="/register" className="text-green-1">
                             Register now

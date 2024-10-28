@@ -114,7 +114,7 @@ export default function Nav() {
 
     return (
         <div>
-            <div className="flex justify-between items-center py-4 space-x-1">
+            <div className="flex bg-gray-800 justify-between items-center py-4 space-x-1">
                 <h3 className="text-green-1">ProBoost.</h3>
 
                 <div className="flex items-center space-x-2">
@@ -165,7 +165,7 @@ export default function Nav() {
             {/* Image Popup */}
             {imagePopupOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg p-4 relative w-[90%] max-w-[500px]">
+                    <div className="bg-black rounded-lg p-4 relative w-[90%] max-w-[500px]">
                         <button
                             onClick={() => setImagePopupOpen(false)}
                             className="absolute top-2 right-2 text-xl text-gray-600 hover:text-gray-800"
@@ -174,7 +174,7 @@ export default function Nav() {
                         </button>
                         <div className="flex flex-col items-center">
                             <img src={myImage} alt="Popup" className="w-full h-auto mb-2" /> {/* Image */}
-                            <p className="text-center text-gray-700">
+                            <p className="text-center text-white">
                                 You can donate me some money to support me as well as to make this site free as we are working tirelessly to bring you the best expericence possible
                             </p>
                         </div>
@@ -198,7 +198,7 @@ export default function Nav() {
                         <button onClick={() => setChangeNameOpen(false)} type="button">
                             <p>Cancel</p>
                         </button>
-                        <button className="ml-4 bg-purple-1 text-white drop-shadow-md py-2 px-4 rounded-md">
+                        <button className="ml-4 bg-purple-1 text-black drop-shadow-md py-2 px-4 rounded-md">
                             <p>Change</p>
                         </button>
                     </div>
@@ -208,7 +208,7 @@ export default function Nav() {
             <Modal open={deleteAccountOpen} setOpen={setDeleteAccountOpen} title="Delete Account">
                 <div className="max-w-[500px]">
                     <p className="mb-4">
-                        Are you sure you want to delete your account? All habit tracking data will be lost.
+                        Are you sure you want to delete your account? All actions/data saved will be lost.
                     </p>
                     {user?.providerData[0].providerId === "password" && (
                         <div className="space-y-1 mb-4">
@@ -229,7 +229,7 @@ export default function Nav() {
                         </button>
                         <button
                             onClick={handleDeleteAccount}
-                            className="ml-4 bg-red-1 text-white drop-shadow-md py-2 px-4 rounded-md"
+                            className="ml-4 bg-red-1 text-black drop-shadow-md py-2 px-4 rounded-md"
                         >
                             <p>Delete</p>
                         </button>

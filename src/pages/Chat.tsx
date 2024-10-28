@@ -82,8 +82,8 @@ const Chat: React.FC = () => {
 
     return (
     
-            <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-4 flex flex-col flex-grow">
-                <h3 className="text-xl font-semibold mb-4">Discussion/Hangout Room</h3>
+            <div className="w-full max-w-3xl bg-black rounded-lg shadow-lg p-4 flex flex-col flex-grow">
+                <h3 className="text-white font-semibold mb-4">Discussion/Hangout Room</h3>
                 <main className="flex-grow overflow-y-auto mb-4" style={{ maxHeight: "60vh" }}>
                     {user && (
                         <>
@@ -125,7 +125,7 @@ const Chat: React.FC = () => {
                             />
                             <button
                                 type="submit"
-                                className="bg-green-500 text-white px-4 py-2 rounded-r-lg hover:bg-green-600 transition-colors"
+                                className="bg-green-500 text-black px-4 py-2 rounded-r-lg hover:bg-green-600 transition-colors"
                             >
                                 Send
                             </button>

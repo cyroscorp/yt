@@ -48,11 +48,11 @@ function Blog() {
           postLists.map((post) => (
             <div
               key={post.id}
-              className="post bg-white shadow-md rounded-lg p-6 mb-6"
+              className="post bg-black shadow-md rounded-lg p-6 mb-6"
             >
               <div className="postHeader flex justify-between items-center">
                 <div className="title">
-                  <h1 className="text-2xl font-bold text-gray-800">
+                  <h1 className="text-2xl font-bold text-white">
                     {post.title}
                   </h1>
                 </div>
@@ -66,10 +66,10 @@ function Blog() {
                   </button>
                 </div>
               </div>
-              <div className="postTextContainer mt-4 text-gray-600">
+              <div className="postTextContainer mt-4 text-white">
                 {post.postText}
               </div>
-              <h3 className="mt-4 text-sm text-gray-400">@{post.author.name}</h3>
+              <h3 className="mt-4 text-sm text-white">@{post.author.name}</h3>
             </div>
           ))
         )}

@@ -25,7 +25,7 @@ export default function Grid() {
         <>
             <h3>Chart</h3>
             <hr />
-            <div className="bg-white flex justify-center rounded-md drop-shadow py-4">
+            <div className="bg-black flex justify-center rounded-md drop-shadow py-4">
                 <div
                     ref={scrollableRef}
                     className="relative overflow-x-scroll flex flex-col flex-wrap h-[113px] w-[94%]"
