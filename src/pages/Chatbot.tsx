@@ -22,6 +22,13 @@ const ChatBot: React.FC = () => {
     'To know more about me, visit <a href="https://portfolioakd.vercel.app" target="_blank" style="color: green; text-decoration: underline;">Portfolio</a>',
   ];
 
+  // Initial bot message to show when the chat opens
+  const initialBotMessage: Message = {
+    id: Date.now(),
+    text: "Hi there you human ? how can i help you today",
+    isUser: false,
+  };
+
   const handleSend = () => {
     if (input.trim() === '') return;
 
@@ -47,6 +54,13 @@ const ChatBot: React.FC = () => {
     // Clear input field
     setInput('');
   };
+
+  // Display the initial message when chat opens for the first time
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      setMessages([initialBotMessage]);
+    }
+  }, [isOpen]);
 
   // Scroll to the bottom of the message list whenever new messages are added
   useEffect(() => {
