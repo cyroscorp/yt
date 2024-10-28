@@ -73,8 +73,8 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                     <div className="space-y-1">
                         <input
                             type="text"
-                            placeholder="Habit Title"
-                            {...register("title", { required: "Habit Title is required", minLength: 2 })}
+                            placeholder="Action Title"
+                            {...register("title", { required: "Action Title is required", minLength: 2 })}
                             className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-full"
                         />
                         {errors.title && <p className="text-red-1 text-xs">{errors.title.message as string}</p>}
