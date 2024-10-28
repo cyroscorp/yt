@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 const Starfield: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [showStarfield, setShowStarfield] = useState(true);
-  let speed = 0.05;
+  let speed = 0.05; // Initial speed
   let stars: Star[] = [];
 
   class Star {
@@ -61,13 +61,26 @@ const Starfield: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    window.addEventListener('wheel', (event) => {
-      if (event.deltaY < 0) speed *= 1.1;
-      else speed *= 0.9;
-      if (speed < 0.01) speed = 0.01;
-      else if (speed > 100) speed = 0.1;
-    });
+    // Add mouse enter and leave event listeners
+    const handleMouseEnter = () => {
+      const increaseSpeed = () => {
+        speed *= 1.1; // Increase speed
+        if (speed < 100) { // Optional: Set a maximum limit for speed
+          requestAnimationFrame(increaseSpeed);
+        }
+      };
+      increaseSpeed(); // Start increasing speed when mouse enters
+    };
 
+    const handleMouseLeave = () => {
+      speed = 0.05; // Reset speed when mouse leaves
+    };
+
+    // Add event listeners to the canvas
+    canvas.addEventListener('mouseenter', handleMouseEnter);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    // Initialize stars
     for (let i = 0; i < 800; i++) stars.push(new Star(canvas.width, canvas.height));
 
     c.fillStyle = 'rgba(0, 0, 0, 0.4)';
@@ -86,17 +99,19 @@ const Starfield: React.FC = () => {
 
     const timer = setTimeout(() => {
       setShowStarfield(false); // Hide the starfield after 3 seconds
-    }, 4000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer); // Cleanup the timer on unmount
-      window.removeEventListener('wheel', () => {});
+      canvas.removeEventListener('mouseenter', handleMouseEnter); // Cleanup mouse enter event listener
+      canvas.removeEventListener('mouseleave', handleMouseLeave); // Cleanup mouse leave event listener
     };
   }, []);
 
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full transition-opacity duration-1000 ${showStarfield ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      style={{ zIndex: 9999 }} // Ensure it appears on top of all other content
     >
       <canvas ref={canvasRef} />
     </div>
