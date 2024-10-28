@@ -15,14 +15,14 @@ import { getFirestore, query, getDocs, collection, where, doc, setDoc } from "fi
 
 // Web Firebase Configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyADJwSudN3vMRicU7QdobwUT_55h1ughww",
-  authDomain: "arrr-13914.firebaseapp.com",
-  databaseURL: "https://arrr-13914-default-rtdb.firebaseio.com",
-  projectId: "arrr-13914",
-  storageBucket: "arrr-13914.appspot.com",
-  messagingSenderId: "695438168915",
-  appId: "1:695438168915:web:094bf90d0621de702347a6",
-  measurementId: "G-CNSQQBD7FM"
+    apiKey: "AIzaSyDG2vrUSdRQeAFzJc6omnkJoWTkvMks-LA",
+    authDomain: "proboostakd.firebaseapp.com",
+    databaseURL: "https://proboostakd-default-rtdb.firebaseio.com",
+    projectId: "proboostakd",
+    storageBucket: "proboostakd.appspot.com",
+    messagingSenderId: "1018870936434",
+    appId: "1:1018870936434:web:551cd9da1c2b50908da3eb",
+    measurementId: "G-RSY9C1015J",
 };
 
 // Initialize Firebase
