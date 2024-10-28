@@ -68,7 +68,7 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                 <span className="font-semibold">Add Actions</span>
             </button>
 
-            <Modal open={open} setOpen={setOpen} title={"Add Habit"}>
+            <Modal open={open} setOpen={setOpen} title={"Add a Action"}>
                 <form onSubmit={handleSubmit(handleAddHabit)} className="space-y-2">
                     <div className="space-y-1">
                         <input
