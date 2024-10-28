@@ -68,59 +68,54 @@ export default function List({ habits, setHabits }: { habits: Habit[]; setHabits
                 <span className="font-semibold">Add Actions</span>
             </button>
 
-            <Modal open={open} setOpen={setOpen} title={"Add New Habit"} className="max-w-md"> {/* Added max-w-md */}
-    <form onSubmit={handleSubmit(handleAddHabit)} className="space-y-6">
-        <div className="space-y-2">
-            <input
-                type="text"
-                placeholder="Habit Title"
-                {...register("title", { required: "Habit Title is required", minLength: 2 })}
-                className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-            />
-            {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
-        </div>
+            <Modal open={open} setOpen={setOpen} title={"Add Habit"}>
+                <form onSubmit={handleSubmit(handleAddHabit)} className="space-y-2">
+                    <div className="space-y-1">
+                        <input
+                            type="text"
+                            placeholder="Habit Title"
+                            {...register("title", { required: "Habit Title is required", minLength: 2 })}
+                            className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-full"
+                        />
+                        {errors.title && <p className="text-red-1 text-xs">{errors.title.message as string}</p>}
+                    </div>
 
-        <div className="flex space-x-4">
-            <div className="flex-1 space-y-2">
-                <input
-                    type="number"
-                    placeholder="Goal Number"
-                    {...register("goalNumber", { required: "Goal Number is required", min: 1 })}
-                    className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {errors.goalNumber && (
-                    <p className="text-red-500 text-sm">{errors.goalNumber.message}</p>
-                )}
-            </div>
+                    <div className="flex flex-row items-center space-x-2">
+                        <div className="space-y-1">
+                            <input
+                                type="number"
+                                placeholder="45"
+                                {...register("goalNumber", { required: "Goal Number is required", minLength: 1 })}
+                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary w-[5ch]"
+                            />
+                            {errors.goalNumber && (
+                                <p className="text-red-1 text-xs">{errors.goalNumber.message as string}</p>
+                            )}
+                        </div>
 
-            <div className="flex-1 space-y-2">
-                <input
-                    type="text"
-                    placeholder="Goal Unit (e.g., Minutes)"
-                    {...register("goalUnit", { required: "Goal Units are required", minLength: 1 })}
-                    className="p-3 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {errors.goalUnit && (
-                    <p className="text-red-500 text-sm">{errors.goalUnit.message}</p>
-                )}
-            </div>
-        </div>
+                        <div className="space-y-1">
+                            <input
+                                type="text"
+                                placeholder="Minutes"
+                                {...register("goalUnit", { required: "Goal Units are required", minLength: 1 })}
+                                className="p-2 rounded-md shadow-inner bg-b-tertiary dark:bg-db-tertiary"
+                            />
+                            {errors.goalUnit && (
+                                <p className="text-red-1 text-xs">{errors.goalUnit.message as string}</p>
+                            )}
+                        </div>
+                    </div>
 
-        <div className="flex justify-end space-x-4 pt-4">
-            <button
-                onClick={() => setOpen(false)}
-                type="button"
-                className="text-gray-600 hover:text-gray-800"
-            >
-                <p className="font-semibold">Cancel</p>
-            </button>
-            <button className="bg-gradient-to-r from-purple-500 to-purple-700 text-white drop-shadow-md py-2 px-4 rounded-lg hover:bg-gradient-to-l transition-colors duration-300">
-                <p className="font-semibold">Add</p>
-            </button>
-        </div>
-    </form>
-</Modal>
-
+                    <div className="flex flex-row justify-end pt-4">
+                        <button onClick={() => setOpen(false)} type="button">
+                            <p>Cancel</p>
+                        </button>
+                        <button className="ml-4 bg-purple-1 text-white drop-shadow-md py-2 px-4 rounded-md">
+                            <p>Add</p>
+                        </button>
+                    </div>
+                </form>
+            </Modal>
         </div>
     );
 }
