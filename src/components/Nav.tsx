@@ -175,7 +175,7 @@ export default function Nav() {
                         <div className="flex flex-col items-center">
                             <img src={myImage} alt="Popup" className="w-full h-auto mb-2" /> {/* Image */}
                             <p className="text-center text-white">
-                                You can donate me some money to support me as well as to make this site free as we are working tirelessly to bring you the best expericence possible
+                                Isn't it amazing that in big vast internet we met here , you can contribute and be a part of this project by giving me some money even as low as 10 rupees i will be gratefull even if you want any change or modification then feel free to reach out at my email -"arjunexisted@gmail.com" 
                             </p>
                         </div>
                     </div>
