@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import Footer from "./components/layout/Footer";
+
 
 function App() {
     return (
@@ -16,7 +16,7 @@ function App() {
                     </Routes>
                 </div>
             </Router>
-            <Footer />
+         
         </div>
     );
 }
